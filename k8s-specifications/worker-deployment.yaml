@@ -18,6 +18,14 @@ spec:
         - image: example-voting-app-worker:latest
           imagePullPolicy: IfNotPresent
           name: worker
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 999
+            runAsGroup: 999
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           resources:
             requests:
               cpu: "100m"
